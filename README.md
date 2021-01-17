@@ -2,8 +2,16 @@
 
 ## Preview
 
+Check redis exmple
+
 ```
-https://count.dksrv.com/
+https://count.dksrv.com/redis
+```
+
+Check mongodb exmple
+
+```
+https://count.dksrv.com/mongo
 ```
 
 ### Docker
