@@ -13,6 +13,6 @@ echo "3. Rebuild docker instance"
 sudo docker-compose build
 
 echo "4. Restart docker instance"
-sudo docker-compose up
+sudo docker-compose up -d
 
 echo "# # # Finished release task # # #"
