@@ -1,6 +1,18 @@
-# WIP | dockerize-nodejs-mongodb-redis
+# dockerize-nodejs-mongodb-redis
+
+## Preview
+
+```
+https://count.dksrv.com/
+```
 
 ### Docker
+
+Build docker container
+
+```
+docker-compose build
+```
 
 Run docker container
 
