@@ -3,12 +3,24 @@ version: "3"
 services:
   redis:
     container_name: redis-app
+    restart: always
     image: redis:alpine
     networks:
       - app-network
+    # ports:
+    #   - 6379:6379
+
+  mongo:
+    container_name: mongo-app
+    image: mongo
+    networks:
+      - app-network
+    # ports:
+    #   - 27017:27017
 
   server:
     container_name: server-app
+    restart: always
     build:
       context: .
       dockerfile: Dockerfile
@@ -16,6 +28,7 @@ services:
     environment:
       - SERVER_PORT=${SERVER_PORT}
       - REDIS_HOST=redis://redis-app
+      - MONGO_HOST=mongodb://mongo:27017/mongo-app
     ports:
       - ${SERVER_PORT}:${SERVER_PORT}
     depends_on:
