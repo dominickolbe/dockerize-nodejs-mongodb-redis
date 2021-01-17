@@ -9,10 +9,12 @@
     "prettier-check": "prettier --check src/"
   },
   "dependencies": {
+    "@types/redis": "^2.8.28",
     "add": "^2.0.6",
     "dotenv": "^8.2.0",
     "koa": "^2.13.1",
     "koa-router": "^10.0.0",
+    "redis": "^3.0.2",
     "ts-node": "^9.1.1",
     "typescript": "^4.1.3",
     "yarn": "^1.22.10"

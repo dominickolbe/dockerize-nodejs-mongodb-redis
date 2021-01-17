@@ -2,6 +2,7 @@ require("dotenv").config();
 
 import Koa from "koa";
 import Router from "koa-router";
+import { redisDatabase } from "./redis";
 
 const SERVER_PORT = process.env.SERVER_PORT;
 
@@ -12,7 +13,11 @@ const server = async () => {
   const router = new Router();
 
   router.get("/", async (ctx) => {
-    ctx.response.status = 200;
+    const cacheValue = await redisDatabase.get("usercount");
+    const usercount = cacheValue !== null ? cacheValue : 1;
+    // @ts-ignore
+    redisDatabase.set("usercount", parseInt(usercount) + 1);
+    ctx.body = usercount;
   });
 
   router.allowedMethods();

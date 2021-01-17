@@ -1,13 +1,29 @@
 version: "3"
 
 services:
+  redis:
+    container_name: redis-app
+    image: redis:alpine
+    restart: always
+    networks:
+      - app-network
+
   server:
-    container_name: server
+    container_name: server-app
     build:
       context: .
       dockerfile: Dockerfile
     env_file: .env
     environment:
       - SERVER_PORT=${SERVER_PORT}
+      - REDIS_HOST=redis://redis-app
     ports:
       - ${SERVER_PORT}:${SERVER_PORT}
+    depends_on:
+      - redis
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
