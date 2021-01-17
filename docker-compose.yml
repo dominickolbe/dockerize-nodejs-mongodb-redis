@@ -7,6 +7,9 @@ services:
     image: redis:alpine
     networks:
       - app-network
+    volumes:
+      - redis-data:/data
+      - redis-dump:/var/lib/redis
     # ports:
     #   - 6379:6379
 
@@ -15,6 +18,8 @@ services:
     image: mongo
     networks:
       - app-network
+    volumes:
+      - mongo-data:/data/db
     # ports:
     #   - 27017:27017
 
@@ -39,3 +44,8 @@ services:
 networks:
   app-network:
     driver: bridge
+
+volumes:
+  mongo-data:
+  redis-data:
+  redis-dump:
