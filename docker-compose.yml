@@ -4,13 +4,11 @@ services:
   redis:
     container_name: redis-app
     image: redis:alpine
-    restart: no
     networks:
       - app-network
 
   server:
     container_name: server-app
-    restart: no
     build:
       context: .
       dockerfile: Dockerfile
