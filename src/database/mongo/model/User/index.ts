@@ -7,6 +7,11 @@ const UserSchema = new mongoose.Schema(
       type: Date,
       default: Date.now,
     },
+    expireAt: {
+      type: Date,
+      default: Date.now,
+      index: { expires: "7d" },
+    },
   },
   { versionKey: false }
 );
