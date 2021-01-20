@@ -1,6 +1,6 @@
 <p align="center">
   <p align="center">:computer: :computer: :computer:</p>
-  <h3 align="center">docker container combining nodejs koa server + mongodb + redis</h3>
+  <h2 align="center">docker container combining nodejs koa server + mongodb + redis</h2>
 </p>
 
 ### Preview
