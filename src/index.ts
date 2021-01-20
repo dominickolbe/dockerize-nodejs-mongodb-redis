@@ -16,6 +16,10 @@ const server = async () => {
   const app = new Koa();
   const router = new Router();
 
+  router.get("/", async (ctx) => {
+    ctx.response.status = 200;
+  });
+
   router.get("/redis", async (ctx) => {
     const cacheValue = await redisDatabase.get("usercount");
     const usercount = cacheValue !== null ? cacheValue : 1;
