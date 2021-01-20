@@ -2,7 +2,7 @@ require("dotenv").config();
 
 import Koa from "koa";
 import Router from "koa-router";
-import { SERVER_PORT } from "./constants";
+import { PORT } from "./constants";
 import { Database } from "./database/mongo";
 import { UserModel } from "./database/mongo/model/User";
 import { redisDatabase } from "./database/redis";
@@ -20,12 +20,14 @@ const server = async () => {
     ctx.response.status = 200;
   });
 
+  const response = await redisDatabase.get("counter");
+  // @ts-ignore
+  let counter = response !== null ? parseInt(response) : 0;
+
   router.get("/redis", async (ctx) => {
-    const cacheValue = await redisDatabase.get("usercount");
-    const usercount = cacheValue !== null ? cacheValue : 1;
-    // @ts-ignore
-    redisDatabase.set("usercount", parseInt(usercount) + 1);
-    ctx.body = usercount;
+    counter++;
+    redisDatabase.set("counter", counter.toString());
+    ctx.body = counter;
   });
 
   router.get("/mongo", async (ctx) => {
@@ -37,8 +39,8 @@ const server = async () => {
   router.allowedMethods();
   app.use(router.routes());
 
-  app.listen(SERVER_PORT, () => {
-    console.log(`[Info]: server is running on port ${SERVER_PORT}`);
+  app.listen(PORT, () => {
+    console.log(`[Info]: server is running on port ${PORT}`);
   });
 };
 
