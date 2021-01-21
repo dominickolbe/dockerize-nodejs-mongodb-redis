@@ -1,9 +1,10 @@
-version: "3"
+version: "3.8"
 
 services:
   mongo:
     container_name: docker-node-app-mongo
     image: mongo
+    restart: unless-stopped
     networks:
       - docker-node-app-network
     volumes:
@@ -12,6 +13,7 @@ services:
   redis:
     container_name: docker-node-app-redis
     image: redis:alpine
+    restart: unless-stopped
     networks:
       - docker-node-app-network
     volumes:
@@ -27,6 +29,7 @@ services:
     environment:
       - REDIS_HOST=redis://docker-node-app-redis
       - MONGO_HOST=mongodb://mongo:27017/docker-node-app-mongo
+    restart: unless-stopped
     ports:
       - ${PORT}:${PORT}
     depends_on:
