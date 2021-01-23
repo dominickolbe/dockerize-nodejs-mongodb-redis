@@ -3,20 +3,6 @@
   <h2 align="center">docker container combining nodejs koa server + mongodb + redis</h2>
 </p>
 
-### Preview
-
-redis counter example
-
-```http
-https://count.dksrv.com/redis
-```
-
-mongodb create document example
-
-```http
-https://count.dksrv.com/mongo
-```
-
 ## Getting Started
 
 ### Prerequisites

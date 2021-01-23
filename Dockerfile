@@ -1,9 +1,12 @@
-FROM node:14
+FROM node:12-alpine
 
-WORKDIR /app
+WORKDIR /usr/src/app
+
+COPY package.json package.json
+COPY yarn.lock yarn.lock
+
+RUN yarn install --frozen-lockfile
 
 COPY . .
 
-RUN yarn
-
-CMD [ "npm", "start" ]
+CMD ["yarn", "start"]

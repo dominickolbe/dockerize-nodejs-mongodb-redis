@@ -15,4 +15,7 @@ sudo docker-compose build
 echo "4. Restart docker instance"
 sudo docker-compose up -d
 
+echo "5. make scripts executable"
+sudo chmod +x -R scripts/
+
 echo "# # # Finished release task # # #"

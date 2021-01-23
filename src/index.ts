@@ -2,7 +2,7 @@ require("dotenv").config();
 
 import Koa from "koa";
 import Router from "koa-router";
-import { PORT } from "./constants";
+import { SERVER_PORT } from "./constants";
 import { Database } from "./database/mongo";
 import { UserModel } from "./database/mongo/model/User";
 import { redisDatabase } from "./database/redis";
@@ -39,8 +39,8 @@ const server = async () => {
   router.allowedMethods();
   app.use(router.routes());
 
-  app.listen(PORT, () => {
-    console.log(`[Info]: server is running on port ${PORT}`);
+  app.listen(SERVER_PORT, () => {
+    console.log(`[Info]: server is running on port ${SERVER_PORT}`);
   });
 };
 
